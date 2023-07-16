@@ -11,6 +11,7 @@
     <a href="#" onclick="showPage('apps')">Apps</a>
     <a href="#" onclick="showPage('games')">Games</a>
     <a href="#" onclick="showPage('settings')">Settings</a>
+    <a href="#" onclick="showPage('search')">Search</a>
   </div>
 
   <div id="content">
@@ -33,12 +34,38 @@
       <h2>Settings Page</h2>
       <!-- Add content for the Settings page here -->
     </div>
+
+    <div id="search">
+      <h2>Search Page</h2>
+      <div style="text-align: center;">
+        <p>Loading...</p>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
   <script>
     function redirectToGithub() {
       window.location.href = 'https://github.com/Ljduley12';
+    }
+
+    function showPage(pageId) {
+      // Hide all page sections
+      const pageSections = document.querySelectorAll('#content > div');
+      pageSections.forEach(section => {
+        section.style.display = 'none';
+      });
+
+      // Show the selected page
+      const selectedPage = document.getElementById(pageId);
+      selectedPage.style.display = 'block';
+
+      // Load specific scripts for each page
+      if (pageId === 'search') {
+        const script = document.createElement('script');
+        script.src = 'index.js';
+        document.body.appendChild(script);
+      }
     }
   </script>
 
